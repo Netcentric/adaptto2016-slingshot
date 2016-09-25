@@ -1,3 +1,1 @@
-node{ 
-	load '/var/jenkins_home/jobs/slingshot/flow.groovy'
-}
+node{ load '/var/jenkins_home/jobs/slingshot/flow.groovy'}
