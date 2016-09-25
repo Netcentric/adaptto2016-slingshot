@@ -1,4 +1,4 @@
 node {
-  load '../slingshot/flow.groovy'
+  load '/var/jenkins_home/jobs/slingshot/flow.groovy'
 
 }
