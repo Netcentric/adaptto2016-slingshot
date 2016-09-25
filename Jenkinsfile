@@ -30,14 +30,14 @@ node {
 
 			def sling
 			try {
-				stage('Testing') {
+				stage('Integration Tests') {
 					parallel(Integration: {
 						sling = slingImg.run('')
 						mavenImg.inside("--link ${sling.id}:sling") {
 							sh "mvn sling:install -Dsling.url=http://sling:8080/system/console"
-							// TODO: run maven based tests here
+							sh 'echo "TODO: image we run some mvn based tests here"'
 						}
-						// TODO: run other tests here
+						sh 'echo "TODO: image we run other tests here"'
 					}, StaticAnalysis: { 
 						echo 'Mocked static testing'
 					})
@@ -55,17 +55,18 @@ node {
 					sh "docker commit ${sling.id} apachesling/sling:latest"
 					// make sure reference is really to the latest
 					slingImg = docker.image("apachesling/sling")
-					// push to private registry
+					// You'd push the updated image to your private registry
 					//slingImg.push()
 				}  
 			} finally {
+				// make sure the container is always cleaned up after
 				sling.stop()
 			}  
 		}
 
 		stage('Staging') {
 			parallel(Endurance: {
-				echo 'Mocking endurance Testing'
+				echo 'Some endurance testing - load or longlivety'
 			}, UserAcceptance: { 
 				input 'Confirm User Acceptance'
 			})
