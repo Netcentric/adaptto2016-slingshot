@@ -64,7 +64,7 @@ node {
 			}  
 		}
 
-		stage('Staging') {
+		stage('UAT on Reference') {
 			parallel(Endurance: {
 				echo 'Some endurance testing - load or longlivety'
 			}, UserAcceptance: { 
