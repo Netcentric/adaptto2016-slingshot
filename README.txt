@@ -1,5 +1,5 @@
 
-# Trigger change
+# Trigger another change
 
 Apache Sling Slingshot Sample Application
 -----------------------------------------
