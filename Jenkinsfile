@@ -1,1 +1,4 @@
-node{ stage("Init"){load '/var/jenkins_home/jobs/slingshot/flow.groovy'}}
+node{ 
+	flow = load '/var/jenkins_home/jobs/slingshot/flow.groovy'
+	flow.start()
+}
