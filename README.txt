@@ -1,4 +1,4 @@
-
+AdaptTo On Stage
 
 Apache Sling Slingshot Sample Application
 -----------------------------------------
