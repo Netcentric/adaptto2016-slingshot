@@ -51,7 +51,7 @@ node {
 					// TODO: run some more release jobs.
 					// push merge 
 					sshagent (credentials: ['github_ssh']) {
-						sh "git branch -b local-tmp;git branch -f master local-tmp;git push origin ${env.CHANGE_TARGET};git branch -d local-tmp"
+						sh "git checkout -b local-tmp;git branch -f master local-tmp;git push origin ${env.CHANGE_TARGET};git branch -d local-tmp"
 					}
 					sh "docker commit ${sling.id} apachesling/sling:latest"
 					// make sure reference is really to the latest
