@@ -19,7 +19,8 @@ node {
 		docker.withRegistry('https://localhost/', 'docker-registry-login') {
 			stage('Build') {
 				sshagent (credentials: ['github_ssh']) {              
-					sh "git checkout ${env.CHANGE_TARGET}"
+					scm checkout
+					// sh "git checkout ${env.CHANGE_TARGET}"
 					sh "git merge --no-ff origin/pr/${prNumber}"
 				}
 				// The Multibranch plugin already runs on a merged detached branch
