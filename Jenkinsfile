@@ -19,7 +19,8 @@ node {
 		docker.withRegistry('https://localhost/', 'docker-registry-login') {
 			stage('Build') {
 				sshagent (credentials: ['github_ssh']) {              
-					sh "git checkout ${env.CHANGE_TARGET}"
+					checkout scm
+					// sh "git checkout ${env.CHANGE_TARGET}"
 					sh "git merge --no-ff origin/pr/${prNumber}"
 				}
 				// The Multibranch plugin already runs on a merged detached branch
@@ -50,7 +51,7 @@ node {
 					// TODO: run some more release jobs.
 					// push merge 
 					sshagent (credentials: ['github_ssh']) {
-						sh "git push origin ${env.CHANGE_TARGET}"
+						sh "git checkout -b local-tmp;git branch -f master local-tmp;git push origin ${env.CHANGE_TARGET};git branch -d local-tmp"
 					}
 					sh "docker commit ${sling.id} apachesling/sling:latest"
 					// make sure reference is really to the latest
