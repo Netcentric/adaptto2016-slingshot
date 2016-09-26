@@ -22,7 +22,7 @@ node {
 					checkout scm
 				}
 				// The Multibranch plugin already runs on a merged detached branch
-				mavenImg.inside("--link ${sling.id}:sling -v /var/jenkins_home/.m2:/root/.m2") {
+				mavenImg.inside("-v /var/jenkins_home/.m2:/root/.m2") {
 					sh "mvn clean package" 
 				}      
 			}
