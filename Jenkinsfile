@@ -19,7 +19,7 @@ node {
 		docker.withRegistry('https://localhost/', 'docker-registry-login') {
 			stage('Build') {
 				sshagent (credentials: ['github_ssh']) {              
-					scm checkout
+					checkout scm
 					// sh "git checkout ${env.CHANGE_TARGET}"
 					sh "git merge --no-ff origin/pr/${prNumber}"
 				}
