@@ -23,7 +23,7 @@ node {
 				}
 				// The Multibranch plugin already runs on a merged detached branch
 //				mavenImg.inside("-v /var/jenkins_home/.m2:/root/.m2") { // -v would persist the mvn repo between runs
-				mavenImg.inside("") {
+				mavenImg.inside("-v /workspace:/workspace") {
 					sh "mvn clean package" 
 				}      
 			}
@@ -34,7 +34,7 @@ node {
 					parallel(Integration: {
 						sling = slingImg.run('')
 //						mavenImg.inside("--link ${sling.id}:sling -v /var/jenkins_home/.m2:/root/.m2") { // -v would persist the mvn repo between runs
-						mavenImg.inside("--link ${sling.id}:sling") {
+						mavenImg.inside("--link ${sling.id}:sling -v /workspace:/workspace") {
 							sh "mvn sling:install -Dsling.url=http://sling:8080/system/console"
 							sh 'echo "TODO: image we run some mvn based tests here"'
 						}
