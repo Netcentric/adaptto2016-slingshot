@@ -2,7 +2,7 @@ node {
 	def mavenImg = docker.image('maven:3.3.9-jdk-8'); // https://registry.hub.docker.com/_/maven/
 	def slingImg = docker.image("apachesling/sling");
 
-	stage(name:'Mirror') {
+	stage 'Mirror' {
 		// First make sure the slave has this image. 
 		// (For a more PROD-like environment you'd use your own registry)
 		mavenImg.pull()
