@@ -1,5 +1,3 @@
-
-
 Apache Sling Slingshot Sample Application
 -----------------------------------------
 
